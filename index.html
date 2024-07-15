@@ -1,66 +1,109 @@
-class Solution:
-    def countOfAtoms(self, s: str) -> str:
-        def is_digit(c):
-            return '0' <= c <= '9'
-        
-        def is_upper(c):
-            return 'A' <= c <= 'Z'
-        
-        def is_lower(c):
-            return 'a' <= c <= 'z'
-        
-        n = len(s)
-        stk = []
-        i = 0
-        
-        while i < n:
-            if s[i] == '(':
-                stk.append((s[i], 0))
-                i += 1
-            elif s[i] == ')':
-                i += 1
-                mul = 0
-                while i < n and is_digit(s[i]):
-                    mul = mul * 10 + int(s[i])
-                    i += 1
-                if mul == 0:
-                    mul = 1
-                
-                temp = []
-                while stk and stk[-1][0] != '(':
-                    name, count = stk.pop()
-                    count *= mul
-                    temp.append((name, count))
-                stk.pop()  # Remove '('
-                
-                for name, count in temp:
-                    stk.append((name, count))
-            else:
-                if i + 1 < n and is_lower(s[i + 1]):
-                    name = s[i] + s[i + 1]
-                    i += 2
-                else:
-                    name = s[i]
-                    i += 1
-                
-                count = 0
-                while i < n and is_digit(s[i]):
-                    count = count * 10 + int(s[i])
-                    i += 1
-                if count == 0:
-                    count = 1
-                
-                stk.append((name, count))
-        
-        # Reconstruct the result
-        mp = {}
-        for name, count in stk:
-            mp[name] = mp.get(name, 0) + count
-        
-        result = []
-        for name, count in sorted(mp.items()):
-            result.append(name)
-            if count > 1:
-                result.append(str(count))
-        
-        return ''.join(result)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Myntra Clone</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="logo_container">
+        <a href="#"
+          ><img
+            class="myntra_home"
+            src="images/myntra_logo.webp"
+            alt="Myntra Home"
+        /></a>
+      </div>
+      <nav class="nav_bar">
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+        <a href="#">Kids</a>
+        <a href="#">Home & Living</a>
+        <a href="#">Beauty</a>
+        <a href="#">Studio <sup>New</sup></a>
+        <a href="lookbook.html">LookBook <sup>New</sup></a>
+      </nav>
+      <div class="search_bar">
+        <span class="material-symbols-outlined search_icon">search</span>
+        <input
+          class="search_input"
+          placeholder="Search for products, brands and more"
+        />
+      </div>
+      <div class="action_bar">
+        <div class="action_container">
+          <span class="material-symbols-outlined action_icon">person</span>
+          <span class="action_name">Profile</span>
+        </div>
+
+        <div class="action_container">
+          <span class="material-symbols-outlined action_icon">favorite</span>
+          <span class="action_name">Wishlist</span>
+        </div>
+
+        <a class="action_container" href="bag.html">
+          <span class="material-symbols-outlined action_icon"
+            >shopping_bag</span
+          >
+          <span class="action_name">Bag</span>
+          <span class="bag-item-count">0</span>
+        </a>
+      </div>
+    </header>
+    <main>
+      <div class="hero">
+        <img src="images/hero.png">
+      </div>
+    </main>
+    <footer>
+      <div class="footer_container">
+        <div class="footer_column">
+          <h3>ONLINE SHOPPING</h3>
+
+          <a href="#">Men</a>
+          <a href="#">Women</a>
+          <a href="#">Kids</a>
+          <a href="#">Home & Living</a>
+          <a href="#">Beauty</a>
+          <a href="#">Gift Card</a>
+          <a href="#">Myntra Insider</a>
+        </div>
+
+        <div class="footer_column">
+          <h3>ONLINE SHOPPING</h3>
+
+          <a href="#">Men</a>
+          <a href="#">Women</a>
+          <a href="#">Kids</a>
+          <a href="#">Home & Living</a>
+          <a href="#">Beauty</a>
+          <a href="#">Gift Card</a>
+          <a href="#">Myntra Insider</a>
+        </div>
+
+        <div class="footer_column">
+          <h3>ONLINE SHOPPING</h3>
+
+          <a href="#">Men</a>
+          <a href="#">Women</a>
+          <a href="#">Kids</a>
+          <a href="#">Home & Living</a>
+          <a href="#">Beauty</a>
+          <a href="#">Gift Card</a>
+          <a href="#">Myntra Insider</a>
+        </div>
+      </div>
+      <hr />
+
+      <div class="copyright">
+        © 2024 www.myntra.com. All rights reserved(sunfire sensei).
+      </div>
+    </footer>
+    <script src="data/items.js"></script>
+    <script src="scripts/index.js"></script>
+  </body>
+</html>
